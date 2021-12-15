@@ -4,4 +4,7 @@ import com.tienda.tiendatecnologica.infraestructura.adaptador.entidad.RegistroGa
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RepositorioRegistroGarantiaJPA extends JpaRepository<RegistroGarantiaEntity,Integer> {
+    RegistroGarantiaEntity findByCodigo(String findByCodigo);
+    RegistroGarantiaEntity findById(int id);
+
 }

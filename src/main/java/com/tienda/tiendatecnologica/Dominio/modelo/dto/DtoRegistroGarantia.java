@@ -1,54 +1,22 @@
-package com.tienda.tiendatecnologica.infraestructura.adaptador.entidad;
+package com.tienda.tiendatecnologica.Dominio.modelo.dto;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity
-@Table(name="garantia")
-public class RegistroGarantiaEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class DtoRegistroGarantia {
+    private String codigo;
+    private String nombre;
+    private Double costoGarantia;
+    private Double precioProducto;
+    private LocalDate fechaInicioGarantia;
+    private LocalDate fechaFinGarantia;
 
-
-
-    @Column(name = "codigo")
-    String codigo;
-
-    @Column(name = "nombre" )
-    String nombre;
-
-    @Column (name = "costoGarantia")
-    Double costoGarantia;
-
-    @Column (name ="precioProducto")
-    Double precioProducto;
-
-    @Column (name = "fechaInicioGarantia")
-    LocalDate fechaInicioGarantia;
-
-    @Column (name = "fechaFinGarantia")
-    LocalDate fechaFinGarantia;
-
-    public RegistroGarantiaEntity(String codigo, String nombre, Double costoGarantia, Double precioProducto, LocalDate fechaInicioGarantia, LocalDate fechaFinGarantia) {
-    }
-
-    public RegistroGarantiaEntity(int id, String codigo, String nombre, Double costoGarantia, Double precioProducto, LocalDate fechaInicioGarantia, LocalDate fechaFinGarantia) {
-        this.id = id;
+    public DtoRegistroGarantia(String codigo, String nombre, Double costoGarantia, Double precioProducto, LocalDate fechaInicioGarantia, LocalDate fechaFinGarantia) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.costoGarantia = costoGarantia;
         this.precioProducto = precioProducto;
         this.fechaInicioGarantia = fechaInicioGarantia;
         this.fechaFinGarantia = fechaFinGarantia;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getCodigo() {
@@ -99,3 +67,4 @@ public class RegistroGarantiaEntity {
         this.fechaFinGarantia = fechaFinGarantia;
     }
 }
+
