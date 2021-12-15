@@ -1,5 +1,7 @@
 package com.tienda.tiendatecnologica.Dominio.modelo;
 
+import com.tienda.tiendatecnologica.Dominio.modelo.dto.DtoRespuestaCreacionGarantia;
+
 import java.time.LocalDate;
 
 public class RegistroGarantia {

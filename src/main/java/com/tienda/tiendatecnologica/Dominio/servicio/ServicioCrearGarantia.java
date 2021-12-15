@@ -13,6 +13,17 @@ public class ServicioCrearGarantia {
     }
 
     public DtoRespuestaCreacionGarantia ejecutar(RegistroGarantia registroGarantia){
+        Double costoGarantia = calcularCostoGarantia(registroGarantia);
+        registroGarantia.setCostoGarantia(costoGarantia);
         return this.repositorioRegistroGarantia.crear(registroGarantia);
     }
+
+    public Double calcularCostoGarantia (RegistroGarantia registroGarantia){
+        Double costoGarantia = null;
+        costoGarantia = registroGarantia.getPrecioProducto() * 2;
+
+        return costoGarantia;
+    }
+
+
 }
