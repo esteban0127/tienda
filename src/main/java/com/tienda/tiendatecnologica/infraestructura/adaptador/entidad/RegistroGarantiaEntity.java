@@ -30,10 +30,10 @@ public class RegistroGarantiaEntity {
     @Column (name = "fechaFinGarantia")
     LocalDate fechaFinGarantia;
 
-    public RegistroGarantiaEntity(String codigo, String nombre, Double costoGarantia, Double precioProducto, LocalDate fechaInicioGarantia, LocalDate fechaFinGarantia) {
+    public RegistroGarantiaEntity() {
     }
 
-    public RegistroGarantiaEntity(int id, String codigo, String nombre, Double costoGarantia, Double precioProducto, LocalDate fechaInicioGarantia, LocalDate fechaFinGarantia) {
+    public RegistroGarantiaEntity(String codigo, String nombre, Double costoGarantia, Double precioProducto, LocalDate fechaInicioGarantia, LocalDate fechaFinGarantia) {
         this.id = id;
         this.codigo = codigo;
         this.nombre = nombre;
