@@ -5,8 +5,17 @@ import java.time.LocalDate;
 public class ComandoRegistroGarantia {
 
     private String codigo;
+    private String nombre;
     private double precioProducto;
     private LocalDate fechaInicioGarantia;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
     public String getCodigo() {
         return codigo;

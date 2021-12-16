@@ -20,7 +20,12 @@ public class ServicioCrearGarantia {
 
     public Double calcularCostoGarantia (RegistroGarantia registroGarantia){
         Double costoGarantia = null;
-        costoGarantia = registroGarantia.getPrecioProducto() * 2;
+        if(registroGarantia.getPrecioProducto() > 500000){
+            costoGarantia = registroGarantia.getPrecioProducto()*0.2;
+
+        } else {
+            costoGarantia = registroGarantia.getPrecioProducto()*0.1;
+        }
 
         return costoGarantia;
     }
