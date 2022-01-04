@@ -8,6 +8,8 @@ import com.tienda.tiendatecnologica.Dominio.puerto.RepositorioRegistroGarantia;
 public class ServicioCrearGarantia {
 
     private static final String NO_GARANTIA_EXTENDIDA = "Este producto no cuenta con garantia extendida";
+    private static final char VOCAL_A='a', VOCAL_E='e', VOCAL_I='i', VOCAL_O='o', VOCAL_U='u';
+
 
     private RepositorioRegistroGarantia repositorioRegistroGarantia;
 
@@ -37,7 +39,7 @@ public class ServicioCrearGarantia {
     public int validarVocales(RegistroGarantia registroGarantia) {
         int vocales = 0;
         for (int x = 0; x < registroGarantia.getCodigo().length(); x++) {
-            if ((registroGarantia.getCodigo().charAt(x) == 'a') || (registroGarantia.getCodigo().charAt(x) == 'e') || (registroGarantia.getCodigo().charAt(x) == 'i') || (registroGarantia.getCodigo().charAt(x) == 'o') || (registroGarantia.getCodigo().charAt(x) == 'u')) {
+            if ((registroGarantia.getCodigo().charAt(x) == VOCAL_A) || (registroGarantia.getCodigo().charAt(x) == VOCAL_E) || (registroGarantia.getCodigo().charAt(x) == VOCAL_I) || (registroGarantia.getCodigo().charAt(x) == VOCAL_O) || (registroGarantia.getCodigo().charAt(x) == VOCAL_U)) {
                 vocales++;
             }
         }
