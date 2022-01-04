@@ -13,10 +13,10 @@ public class RegistroGarantia {
     private LocalDate fechaInicioGarantia;
     private LocalDate fechaFinGarantia;
 
-    public RegistroGarantia(String codigo, Double precioProducto, LocalDate fechaInicioGarantia) {
+    public RegistroGarantia(String codigo, String nombre , Double precioProducto) {
         this.codigo = codigo;
+        this.nombre= nombre;
         this.precioProducto = precioProducto;
-        this.fechaInicioGarantia = fechaInicioGarantia;
     }
 
     public String getCodigo() {

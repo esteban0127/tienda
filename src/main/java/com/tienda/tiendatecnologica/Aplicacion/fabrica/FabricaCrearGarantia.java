@@ -9,8 +9,8 @@ public class FabricaCrearGarantia {
     public RegistroGarantia crear(ComandoRegistroGarantia comandoRegistroGarantia){
         return new RegistroGarantia(
                 comandoRegistroGarantia.getCodigo(),
-                comandoRegistroGarantia.getPrecioProducto(),
-                comandoRegistroGarantia.getFechaInicioGarantia()
+                comandoRegistroGarantia.getNombre(),
+                comandoRegistroGarantia.getPrecioProducto()
         );
     }
 }

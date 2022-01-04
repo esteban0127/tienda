@@ -7,7 +7,7 @@ public class ComandoRegistroGarantia {
     private String codigo;
     private String nombre;
     private double precioProducto;
-    private LocalDate fechaInicioGarantia;
+
 
     public String getNombre() {
         return nombre;
@@ -33,11 +33,5 @@ public class ComandoRegistroGarantia {
         this.precioProducto = precioProducto;
     }
 
-    public LocalDate getFechaInicioGarantia() {
-        return fechaInicioGarantia;
-    }
 
-    public void setFechaInicioGarantia(LocalDate fechaInicioGarantia) {
-        this.fechaInicioGarantia = fechaInicioGarantia;
-    }
 }

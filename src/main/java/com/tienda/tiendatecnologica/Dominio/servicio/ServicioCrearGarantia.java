@@ -5,6 +5,8 @@ import com.tienda.tiendatecnologica.Dominio.modelo.RegistroGarantia;
 import com.tienda.tiendatecnologica.Dominio.modelo.dto.DtoRespuestaCreacionGarantia;
 import com.tienda.tiendatecnologica.Dominio.puerto.RepositorioRegistroGarantia;
 
+import java.time.LocalDate;
+
 public class ServicioCrearGarantia {
 
     private static final String NO_GARANTIA_EXTENDIDA = "Este producto no cuenta con garantia extendida";
@@ -21,6 +23,8 @@ public class ServicioCrearGarantia {
         validarVocales(registroGarantia);
         Double costoGarantia = calcularCostoGarantia(registroGarantia);
         registroGarantia.setCostoGarantia(costoGarantia);
+        LocalDate fechaInicioGarantia = inicioFechaGarantia(registroGarantia);
+        registroGarantia.setFechaInicioGarantia(fechaInicioGarantia);
         return this.repositorioRegistroGarantia.crear(registroGarantia);
     }
 
@@ -48,6 +52,23 @@ public class ServicioCrearGarantia {
             } else return vocales;
 
 
+    }
+
+    public LocalDate inicioFechaGarantia (RegistroGarantia registroGarantia){
+        LocalDate fechaInicioGarantia = LocalDate.now();
+        return fechaInicioGarantia;
+    }
+
+
+    public LocalDate validarDiaGarantia (RegistroGarantia registroGarantia){
+        if (registroGarantia.getPrecioProducto() > 500000){
+
+        }
+        else {
+            registroGarantia.getFechaInicioGarantia();
+            System.out.println(registroGarantia.getFechaInicioGarantia());
+        }
+        return registroGarantia.getFechaInicioGarantia();
     }
 
 
