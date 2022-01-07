@@ -5,12 +5,14 @@ import com.tienda.tiendatecnologica.Dominio.modelo.RegistroGarantia;
 import com.tienda.tiendatecnologica.Dominio.modelo.dto.DtoRespuestaCreacionGarantia;
 import com.tienda.tiendatecnologica.Dominio.puerto.RepositorioRegistroGarantia;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 public class ServicioCrearGarantia {
 
     private static final String NO_GARANTIA_EXTENDIDA = "Este producto no cuenta con garantia extendida";
     private static final char VOCAL_A='a', VOCAL_E='e', VOCAL_I='i', VOCAL_O='o', VOCAL_U='u';
+    private static final double PRECIO_PRODUCTO = 500000;
 
 
     private RepositorioRegistroGarantia repositorioRegistroGarantia;
@@ -25,12 +27,14 @@ public class ServicioCrearGarantia {
         registroGarantia.setCostoGarantia(costoGarantia);
         LocalDate fechaInicioGarantia = inicioFechaGarantia(registroGarantia);
         registroGarantia.setFechaInicioGarantia(fechaInicioGarantia);
+        LocalDate fechaFinGarantia = validarDiaGarantia(registroGarantia);
+        registroGarantia.setFechaFinGarantia(fechaFinGarantia);
         return this.repositorioRegistroGarantia.crear(registroGarantia);
     }
 
     public Double calcularCostoGarantia (RegistroGarantia registroGarantia){
         Double costoGarantia = null;
-        if(registroGarantia.getPrecioProducto() > 500000){
+        if(registroGarantia.getPrecioProducto() > PRECIO_PRODUCTO){
             costoGarantia = registroGarantia.getPrecioProducto()*0.2;
 
         } else {
@@ -61,14 +65,23 @@ public class ServicioCrearGarantia {
 
 
     public LocalDate validarDiaGarantia (RegistroGarantia registroGarantia){
-        if (registroGarantia.getPrecioProducto() > 500000){
+         LocalDate fechaFinGarantia = null;
+        if (registroGarantia.getPrecioProducto() > PRECIO_PRODUCTO){
+            int dias = 0 , diasl=200;
+            while (dias<=diasl)
+            {
+                fechaFinGarantia = registroGarantia.getFechaInicioGarantia().plusDays(dias);
+                if (fechaFinGarantia.getDayOfWeek() != DayOfWeek.MONDAY)
+                {
+                    dias++;}
 
+
+            }
         }
         else {
-            registroGarantia.getFechaInicioGarantia();
-            System.out.println(registroGarantia.getFechaInicioGarantia());
+            fechaFinGarantia = registroGarantia.getFechaInicioGarantia().plusDays(100);
         }
-        return registroGarantia.getFechaInicioGarantia();
+        return fechaFinGarantia;
     }
 
 
