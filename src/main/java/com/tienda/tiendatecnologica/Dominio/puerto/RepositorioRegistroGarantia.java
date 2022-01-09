@@ -10,4 +10,7 @@ public interface RepositorioRegistroGarantia {
      * @return
      */
     DtoRespuestaCreacionGarantia crear(RegistroGarantia garantia);
+
+    boolean existePorCodigo (String codigoProducto);
+
 }

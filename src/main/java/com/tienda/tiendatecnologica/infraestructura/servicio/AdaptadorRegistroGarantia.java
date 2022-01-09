@@ -26,4 +26,13 @@ public class AdaptadorRegistroGarantia implements RepositorioRegistroGarantia {
         return mapperRegistroGarantia.mapperEntityToDtoRespuestaCreacionGarantia(registroGarantiaEntity);
     }
 
+    @Override
+    public boolean existePorCodigo(String codigoProducto) {
+        RegistroGarantiaEntity garantia = repositorioRegistroGarantiaJPA.findByCodigo(codigoProducto);
+        if (garantia == null){
+            return false;
+        }
+        return true;
+    }
+
 }

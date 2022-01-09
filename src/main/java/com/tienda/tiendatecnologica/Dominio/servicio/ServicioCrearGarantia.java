@@ -1,5 +1,6 @@
 package com.tienda.tiendatecnologica.Dominio.servicio;
 
+import com.tienda.tiendatecnologica.Dominio.excepcion.ExcepcionGarantia;
 import com.tienda.tiendatecnologica.Dominio.excepcion.ExcepcionVocales;
 import com.tienda.tiendatecnologica.Dominio.modelo.RegistroGarantia;
 import com.tienda.tiendatecnologica.Dominio.modelo.dto.DtoRespuestaCreacionGarantia;
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 public class ServicioCrearGarantia {
 
     private static final String NO_GARANTIA_EXTENDIDA = "Este producto no cuenta con garantia extendida";
+    private static final String YA_GARANTIA_EXTENDIDA = "Este producto ya cuenta con garantia extendida";
     private static final char VOCAL_A='a', VOCAL_E='e', VOCAL_I='i', VOCAL_O='o', VOCAL_U='u';
     private static final double PRECIO_PRODUCTO = 500000;
     private static final int DIAS_GARANTIA = 200;
@@ -27,6 +29,7 @@ public class ServicioCrearGarantia {
 
     public DtoRespuestaCreacionGarantia ejecutar(RegistroGarantia registroGarantia){
         validarVocales(registroGarantia);
+        ValidarGarantia(registroGarantia);
         Double costoGarantia = calcularCostoGarantia(registroGarantia);
         registroGarantia.setCostoGarantia(costoGarantia);
         LocalDate fechaInicioGarantia = inicioFechaGarantia(registroGarantia);
@@ -89,6 +92,16 @@ public class ServicioCrearGarantia {
             fechaFinGarantia = registroGarantia.getFechaInicioGarantia().plusDays(100);
         }
         return fechaFinGarantia;
+    }
+
+    public void ValidarGarantia (RegistroGarantia registroGarantia){
+        String codigoProducto = registroGarantia.getCodigo();
+        if (registroGarantia.getCodigo() == codigoProducto){
+            boolean yaTieneGarantia = this.repositorioRegistroGarantia.existePorCodigo(codigoProducto);
+            if (yaTieneGarantia){
+                throw new ExcepcionGarantia(YA_GARANTIA_EXTENDIDA);
+            }
+        }
     }
 
 
