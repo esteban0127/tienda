@@ -13,6 +13,10 @@ public class ServicioCrearGarantia {
     private static final String NO_GARANTIA_EXTENDIDA = "Este producto no cuenta con garantia extendida";
     private static final char VOCAL_A='a', VOCAL_E='e', VOCAL_I='i', VOCAL_O='o', VOCAL_U='u';
     private static final double PRECIO_PRODUCTO = 500000;
+    private static final int DIAS_GARANTIA = 200;
+    private static final Double PORCENTAJE_GARANTIA_MAYOR500000 = 0.2;
+    private static final Double PROCENTAJE_GARANTIA_MENOR500000 = 0.1;
+    private static final int VOCALES = 3;
 
 
     private RepositorioRegistroGarantia repositorioRegistroGarantia;
@@ -35,10 +39,10 @@ public class ServicioCrearGarantia {
     public Double calcularCostoGarantia (RegistroGarantia registroGarantia){
         Double costoGarantia = null;
         if(registroGarantia.getPrecioProducto() > PRECIO_PRODUCTO){
-            costoGarantia = registroGarantia.getPrecioProducto()*0.2;
+            costoGarantia = registroGarantia.getPrecioProducto()*PORCENTAJE_GARANTIA_MAYOR500000;
 
         } else {
-            costoGarantia = registroGarantia.getPrecioProducto()*0.1;
+            costoGarantia = registroGarantia.getPrecioProducto()*PROCENTAJE_GARANTIA_MENOR500000;
         }
 
         return costoGarantia;
@@ -51,7 +55,7 @@ public class ServicioCrearGarantia {
                 vocales++;
             }
         }
-            if (vocales >= 3) {
+            if (vocales >= VOCALES) {
                 throw new ExcepcionVocales(NO_GARANTIA_EXTENDIDA);
             } else return vocales;
 
@@ -67,15 +71,18 @@ public class ServicioCrearGarantia {
     public LocalDate validarDiaGarantia (RegistroGarantia registroGarantia){
          LocalDate fechaFinGarantia = null;
         if (registroGarantia.getPrecioProducto() > PRECIO_PRODUCTO){
-            int dias = 0 , diasl=200;
-            while (dias<=diasl)
-            {
-                fechaFinGarantia = registroGarantia.getFechaInicioGarantia().plusDays(dias);
-                if (fechaFinGarantia.getDayOfWeek() != DayOfWeek.MONDAY)
-                {
-                    dias++;}
-
-
+            int dias = 0 ,lunes =0;
+            while (dias<=DIAS_GARANTIA){
+                fechaFinGarantia = registroGarantia.getFechaInicioGarantia().plusDays(dias+lunes);
+                dias++;
+                if (fechaFinGarantia.getDayOfWeek() == DayOfWeek.MONDAY){
+                    lunes = lunes +1;
+                }
+            }
+            if (fechaFinGarantia.getDayOfWeek() == DayOfWeek.MONDAY){
+                fechaFinGarantia = fechaFinGarantia.plusDays(1);
+            }else if (fechaFinGarantia.getDayOfWeek()== DayOfWeek.SUNDAY){
+                fechaFinGarantia = fechaFinGarantia.plusDays(2);
             }
         }
         else {
