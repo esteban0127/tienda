@@ -5,6 +5,7 @@ import com.tienda.tiendatecnologica.Dominio.excepcion.ExcepcionVocales;
 import com.tienda.tiendatecnologica.Dominio.modelo.RegistroGarantia;
 import com.tienda.tiendatecnologica.Dominio.modelo.dto.DtoRespuestaCreacionGarantia;
 import com.tienda.tiendatecnologica.Dominio.puerto.RepositorioRegistroGarantia;
+import org.springframework.util.StringUtils;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -52,6 +53,7 @@ public class ServicioCrearGarantia {
     }
 
     public int validarVocales(RegistroGarantia registroGarantia) {
+        registroGarantia.getCodigo().toUpperCase();
         int vocales = 0;
         for (int x = 0; x < registroGarantia.getCodigo().length(); x++) {
             if ((registroGarantia.getCodigo().charAt(x) == VOCAL_A) || (registroGarantia.getCodigo().charAt(x) == VOCAL_E) || (registroGarantia.getCodigo().charAt(x) == VOCAL_I) || (registroGarantia.getCodigo().charAt(x) == VOCAL_O) || (registroGarantia.getCodigo().charAt(x) == VOCAL_U)) {
